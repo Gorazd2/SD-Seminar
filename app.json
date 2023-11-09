@@ -1,0 +1,33 @@
+{
+  "id": "ebb8c2a9-1db5-4b54-b9e5-0439767a3405",
+  "name": "SD Seminar",
+  "publisher": "D.E. veloper",
+  "version": "23.0.0.0",
+  "brief": "Seminar Management Solution",
+  "description": "Here is my solution",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "./images/logo.jpg",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "23.0.0.0",
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 50149
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "12.0",
+  "features": [
+    "NoImplicitWith",
+    "TranslationFile"
+  ]
+}
