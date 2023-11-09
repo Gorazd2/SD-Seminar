@@ -79,9 +79,9 @@ table 50101 "CSD Seminar"
             DataClassification = AccountData;
             trigger OnValidate()
             begin
-                if (xRec."Gen. Prod. Posting Group" <> Rec."Gen. Prod. Posting Group") then begin
-                    if GenProdPostingGroup.ValidateVatBusPostingGroup(GenProdPostingGroup, Rec."Gen. Prod. Posting Group") then
-                        Validate(Rec."VAT. Prod. Posting Group", GenProdPostingGroup."Def. VAT Bus. Posting Group");
+                if (xRec."Gen. Prod. Posting Group" <> "Gen. Prod. Posting Group") then begin
+                    if GenProdPostingGroup.ValidateVatBusPostingGroup(GenProdPostingGroup, "Gen. Prod. Posting Group") then
+                        Validate("VAT. Prod. Posting Group", GenProdPostingGroup."Def. VAT Bus. Posting Group");
                 end;
             end;
         }
