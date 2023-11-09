@@ -33,6 +33,10 @@ page 50101 "CSD Seminar Card"
                 { 
                     ApplicationArea = All; 
                 }
+                field("Minimum Participants"; Rec."Minimum Participants")
+                { 
+                    ApplicationArea = All; 
+                }
                 field("Maximum Participants"; Rec."Maximum Participants")
                 { 
                     ApplicationArea = All; 
