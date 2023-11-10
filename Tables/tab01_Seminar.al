@@ -80,8 +80,8 @@ table 50101 "CSD Seminar"
             trigger OnValidate()
             begin
                 if (xRec."Gen. Prod. Posting Group" <> "Gen. Prod. Posting Group") then begin
-                    if GenProdPostingGroup.ValidateVatBusPostingGroup(GenProdPostingGroup, "Gen. Prod. Posting Group") then
-                        Validate("VAT. Prod. Posting Group", GenProdPostingGroup."Def. VAT Bus. Posting Group");
+                    if GenProdPostingGroup.ValidateVatProdPostingGroup(GenProdPostingGroup, "Gen. Prod. Posting Group") then
+                        Validate("VAT. Prod. Posting Group", GenProdPostingGroup."Def. VAT Prod. Posting Group");
                 end;
             end;
         }
@@ -111,7 +111,7 @@ table 50101 "CSD Seminar"
         SeminarSetup: Record "CSD Seminar Setup";
         CommentLine: Record "Comment Line";
         Seminar: Record "CSD Seminar";
-        GenProdPostingGroup: Record "Gen. Business Posting Group";
+        GenProdPostingGroup: Record "Gen. Product Posting Group";
         NoSeriesMgt: Codeunit NoSeriesManagement;
 
     trigger OnInsert()
