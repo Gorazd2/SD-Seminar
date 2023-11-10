@@ -19,50 +19,48 @@ codeunit 50131 "CSD Seminar Jnl.-Check Line"
 
     procedure RunCheck(var SeminarJournalLine: Record "CSD Seminar Journal Line");
     begin
-        With SeminarJournalLine do begin
-            if EmptyLine() then
-                exit;
+        if SeminarJournalLine.EmptyLine() then
+            exit;
 
-            TestField("Posting Date");
-            TestField("Instructor Resource No.");
-            TestField("Seminar No.");
+        SeminarJournalLine.TestField(SeminarJournalLine."Posting Date");
+        SeminarJournalLine.TestField(SeminarJournalLine."Instructor Resource No.");
+        SeminarJournalLine.TestField(SeminarJournalLine."Seminar No.");
 
-            case "Charge Type" of
-                "Charge Type"::Instructor:
-                    TestField("Instructor Resource No.");
-                "Charge Type"::Room:
-                    TestField("Room Resource No.");
-                "Charge Type"::Participant:
-                    TestField("Participant Contact No.");
-            end;
+        case SeminarJournalLine."Charge Type" of
+            SeminarJournalLine."Charge Type"::Instructor:
+                SeminarJournalLine.TestField(SeminarJournalLine."Instructor Resource No.");
+            SeminarJournalLine."Charge Type"::Room:
+                SeminarJournalLine.TestField(SeminarJournalLine."Room Resource No.");
+            SeminarJournalLine."Charge Type"::Participant:
+                SeminarJournalLine.TestField(SeminarJournalLine."Participant Contact No.");
+        end;
 
-            if Chargeable then
-                TestField("Bill-to Customer No.");
+        if SeminarJournalLine.Chargeable then
+            SeminarJournalLine.TestField(SeminarJournalLine."Bill-to Customer No.");
 
-            if "Posting Date" = ClosingDate("Posting Date") then
-                FieldERROR("Posting Date", ClosingDateTxt);
+        if SeminarJournalLine."Posting Date" = ClosingDate(SeminarJournalLine."Posting Date") then
+            SeminarJournalLine.FieldERROR(SeminarJournalLine."Posting Date", ClosingDateTxt);
+
+        if (AllowPostingFrom = 0D) and (AllowPostingTo = 0D) then begin
+            if UserId() <> '' then
+                if UserSetup.GET(UserId()) then begin
+                    AllowPostingFrom := UserSetup."Allow Posting From";
+                    AllowPostingTo := UserSetup."Allow Posting To";
+                end;
 
             if (AllowPostingFrom = 0D) and (AllowPostingTo = 0D) then begin
-                if UserId() <> '' then
-                    if UserSetup.GET(UserId()) then begin
-                        AllowPostingFrom := UserSetup."Allow Posting From";
-                        AllowPostingTo := UserSetup."Allow Posting To";
-                    end;
-
-                if (AllowPostingFrom = 0D) and (AllowPostingTo = 0D) then begin
-                    GLSetup.Get();
-                    AllowPostingFrom := GLSetup."Allow Posting From";
-                    AllowPostingTo := GLSetup."Allow Posting To";
-                end;
-                if AllowPostingTo = 0D then
-                    AllowPostingTo := DMY2Date(31, 12, 9999);
+                GLSetup.Get();
+                AllowPostingFrom := GLSetup."Allow Posting From";
+                AllowPostingTo := GLSetup."Allow Posting To";
             end;
-            if ("Posting Date" < AllowPostingFrom) OR ("Posting Date" > AllowPostingTo) then
-                FieldError("Posting Date", PostingDateTxt);
-
-            if ("Document Date" <> 0D) then
-                if ("Document Date" = CLOSINGDATE("Document Date")) then
-                    FieldERROR("Document Date", PostingDateTxt);
+            if AllowPostingTo = 0D then
+                AllowPostingTo := DMY2Date(31, 12, 9999);
         end;
+        if (SeminarJournalLine."Posting Date" < AllowPostingFrom) OR (SeminarJournalLine."Posting Date" > AllowPostingTo) then
+            SeminarJournalLine.FieldError(SeminarJournalLine."Posting Date", PostingDateTxt);
+
+        if (SeminarJournalLine."Document Date" <> 0D) then
+            if (SeminarJournalLine."Document Date" = CLOSINGDATE(SeminarJournalLine."Document Date")) then
+                SeminarJournalLine.FieldERROR(SeminarJournalLine."Document Date", PostingDateTxt);
     end;
 }
