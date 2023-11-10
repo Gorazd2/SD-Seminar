@@ -64,7 +64,7 @@ table 50101 "CSD Seminar"
             Caption = 'Comment';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = exist("Comment Line" where("Table Name" = filter("CSD Seimnar"), "No." = field("No.")));
+            CalcFormula = exist("Comment Line" where("Table Name" = filter("CSD Seminar"), "No." = field("No.")));
         }
         field(100; "Seminar Price"; Decimal)
         {
@@ -81,13 +81,13 @@ table 50101 "CSD Seminar"
             begin
                 if (xRec."Gen. Prod. Posting Group" <> "Gen. Prod. Posting Group") then begin
                     if GenProdPostingGroup.ValidateVatProdPostingGroup(GenProdPostingGroup, "Gen. Prod. Posting Group") then
-                        Validate("VAT. Prod. Posting Group", GenProdPostingGroup."Def. VAT Prod. Posting Group");
+                        Validate("VAT Prod. Posting Group", GenProdPostingGroup."Def. VAT Prod. Posting Group");
                 end;
             end;
         }
-        field(120; "VAT. Prod. Posting Group"; code[10])
+        field(120; "VAT Prod. Posting Group"; code[10])
         {
-            Caption = 'VAT. Prod. Posting Group';
+            Caption = 'VAT Prod. Posting Group';
             TableRelation = "VAT Product Posting Group";
             DataClassification = AccountData;
         }
@@ -132,7 +132,7 @@ table 50101 "CSD Seminar"
     trigger OnDelete()
     begin
         CommentLine.Reset();
-        CommentLine.SetRange("Table Name", CommentLine."Table Name"::"CSD Seimnar");
+        CommentLine.SetRange("Table Name", CommentLine."Table Name"::"CSD Seminar");
         CommentLine.SetRange("No.", "No.");
         CommentLine.DeleteAll();
     end;

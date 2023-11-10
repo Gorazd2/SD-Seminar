@@ -1,15 +1,15 @@
 enumextension 50100 "Comment Line Table Name" extends "Comment Line Table Name"
 {
-    value(50100; "CSD Seimnar")
+    value(50100; "CSD Seminar")
     {
         Caption = 'Seminar';
     }
-    value(50101; "CSD Seimnar Registration")
+    value(50101; "CSD Seminar Registration")
     {
         Caption = 'Seminar Registration';
     }
-    value(50102; "CSD Posted Seimnar Registration")
+    value(50102; "CSD Posted Seminar Registration")
     {
-        Caption = 'Posted Seimnar Registration';
+        Caption = 'Posted Seminar Registration';
     }
 }

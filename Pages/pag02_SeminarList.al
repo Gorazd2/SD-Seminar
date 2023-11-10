@@ -43,7 +43,7 @@ page 50102 "CSD Seminar List"
                 action("Comments")
                 {
                     RunObject = page "Comment Sheet";
-                    RunPageLink = "Table Name" = const("CSD Seimnar"), "No." = field("No.");
+                    RunPageLink = "Table Name" = const("CSD Seminar"), "No." = field("No.");
                     Image = Comment;
                     ApplicationArea = All;
                 }
