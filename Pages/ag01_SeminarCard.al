@@ -93,9 +93,6 @@ page 50101 "CSD Seminar Card"
                     RunObject = page "Comment Sheet";
                     RunPageLink = "Table Name" = const("CSD Seminar"), "No." = field("No.");
                     Image = Comment;
-                    Promoted = true;
-                    PromotedIsBig = true;
-                    PromotedOnly = true;
                     ApplicationArea = All;
                 }
 
@@ -104,8 +101,6 @@ page 50101 "CSD Seminar Card"
                     Caption = 'Ledger Entries';
                     RunObject = page "CSD Seminar Ledger Entries";
                     RunPageLink = "Seminar No." = field("No.");
-                    Promoted = true;
-                    PromotedCategory = Process;
                     ShortcutKey = "Ctrl+F7";
                     Image = WarrantyLedger;
                 }
@@ -116,14 +111,12 @@ page 50101 "CSD Seminar Card"
                     RunObject = page "CSD Seminar Registration List";
                     RunPageLink = "Seminar No." = field("No.");
                     Image = Timesheet;
-                    Promoted = true;
-                    PromotedCategory = Process;
                 }
 
 
             }
         }
-        // >> Lab 8 1-2 
+
         area(Processing)
         {
             action("Seminar Registration")
@@ -132,9 +125,28 @@ page 50101 "CSD Seminar Card"
                 RunPageLink = "Seminar No." = field("No.");
                 RunPageMode = Create;
                 Image = NewTimesheet;
-                Promoted = true;
-                PromotedCategory = New;
             }
-        } // << Lab 8 1-2
+        }
+        area(Promoted)
+        {
+            group(Category_New)
+            {
+                actionref(ActionName_Promoted; ActionName)
+                {
+                }
+                actionref("Seminar Registration_Promoted"; "Seminar Registration")
+                {
+                }
+            }
+            group(Category_Process)
+            {
+                actionref("Ledger Entries_Promoted"; "Ledger Entries")
+                {
+                }
+                actionref(Registrations_Promoted; Registrations)
+                {
+                }
+            }
+        }
     }
 }

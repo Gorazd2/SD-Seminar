@@ -94,12 +94,32 @@ page 50113 "CSD Seminar Registration List"
                 {
                     Caption = 'Post';
                     Image = PostDocument;
-                    Promoted = true;
-                    PromotedIsBig = true;
-                    PromotedCategory = Process;
                     ShortcutKey = F9;
                     RunObject = codeunit "CSD Seminar-Post (Yes/No)";
                     ApplicationArea = All;
+                }
+                action("Print")
+                {
+                    Caption = 'Print';
+                    Image = Print;
+                    trigger OnAction();
+                    var
+                        SeminarReportSelection: Record "CSD Seminar Report Selections";
+                    begin
+                        SeminarReportSelection.PrintReportSelection(SeminarReportSelection.Usage::Registration, Rec);
+                    end;
+                }
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Process)
+            {
+                actionref(Post_Promoted; Post)
+                {
+                }
+                actionref(Print_Promoted; Print)
+                {
                 }
             }
         }

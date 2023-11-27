@@ -52,8 +52,6 @@ page 50102 "CSD Seminar List"
                     Caption = 'Ledger Entries';
                     RunObject = page "CSD Seminar Ledger Entries";
                     RunPageLink = "Seminar No." = field("No.");
-                    Promoted = true;
-                    PromotedCategory = Process;
                     ShortcutKey = "Ctrl+F7";
                     Image = WarrantyLedger;
                 }
@@ -64,8 +62,6 @@ page 50102 "CSD Seminar List"
                     RunObject = page "CSD Seminar Registration List";
                     RunPageLink = "Seminar No." = field("No.");
                     Image = Timesheet;
-                    Promoted = true;
-                    PromotedCategory = Process;
                 }
 
 
@@ -80,8 +76,24 @@ page 50102 "CSD Seminar List"
                 RunPageLink = "Seminar No." = field("No.");
                 RunPageMode = Create;
                 Image = NewTimesheet;
-                Promoted = true;
-                PromotedCategory = New;
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_New)
+            {
+                actionref("Seminar Registration_Promoted"; "Seminar Registration")
+                {
+                }
+            }
+            group(Category_Process)
+            {
+                actionref("Ledger Entries_Promoted"; "Ledger Entries")
+                {
+                }
+                actionref(Registrations_Promoted; Registrations)
+                {
+                }
             }
         }
     }

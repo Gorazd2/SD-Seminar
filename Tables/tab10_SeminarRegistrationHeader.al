@@ -307,6 +307,11 @@ table 50110 "CSD Seminar Reg. Header"
             Caption = 'Posting No.';
             DataClassification = AccountData;
         }
+        field(40; "No. Printed"; Decimal)
+        {
+            Caption = 'No. Printed';
+            DataClassification = AccountData;
+        }
 
     }
 
