@@ -25,15 +25,37 @@ page 50110 "CSD Seminar Registration"
                     begin
                         if Rec.AssistEdit(xRec) then
                             CurrPage.Update();
+
+                    end;
+
+                    trigger OnValidate();
+                    begin
+                        FieldIsMandatory := true;
                     end;
                 }
                 field("Starting Date"; Rec."Starting Date")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Enter the Sattring Date of the seminar Registration';
+                    ShowMandatory = FieldIsMandatory;
+
+                    trigger OnValidate()
+                    var
+                        DateBeforeTodayWarning: Label 'Date is Before Today';
+                        DateBeforeTodayNotification: Notification;
+                        Cust: Record Customer;
+
+                    begin
+                        if Rec."Starting Date" < WORKDATE then begin
+
+                        end
+                    end;
                 }
                 field("Seminar No."; Rec."Seminar No.")
                 {
                     ApplicationArea = All;
+                    ToolTip = 'Enter the Seminar No. of the seminar Registration';
+                    ShowMandatory = FieldIsMandatory;
                 }
                 field("Seminar Name"; Rec."Seminar Name")
                 {
@@ -194,5 +216,12 @@ page 50110 "CSD Seminar Registration"
             }
         }
     }
+    var
+        FieldIsMandatory: Boolean;
+
+    trigger OnInsertRecord(BelowxRec: Boolean): Boolean
+    begin
+        FieldIsMandatory := true;
+    end;
 }
 

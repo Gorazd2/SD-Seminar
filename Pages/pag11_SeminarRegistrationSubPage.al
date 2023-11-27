@@ -19,6 +19,7 @@ page 50111 "CSD Seminar Reg. Subpage"
                 field("Bill-to Customer No."; Rec."Bill-to Customer No.")
                 {
                     ApplicationArea = All;
+  
                 }
                 field("Participant Contact No."; Rec."Participant Contact No.")
                 {
