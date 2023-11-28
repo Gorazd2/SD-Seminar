@@ -30,7 +30,7 @@ report 50100 "CSD Create Seminar Invoices"
                         InsertSalesInvoiceHeader();
                     end;
                     Window.Update(2, "Seminar Registration No.");
-                    InsertSeminarHeaderLine();
+                    InsertSeminarLine();
                     case Type of
                         Type::Resource:
                             begin
@@ -64,6 +64,7 @@ report 50100 "CSD Create Seminar Invoices"
                     SalesLine.Validate(Quantity, Quantity);
                     SalesLine.Insert();
                     NextLineNo := NextLineNo + 10000;
+                    
                 end;
             end;
 
@@ -215,7 +216,7 @@ report 50100 "CSD Create Seminar Invoices"
         NextLineNo := 10000;
     end;
 
-    local procedure InsertSeminarHeaderLine()
+    local procedure InsertSeminarLine()
     begin
         if "Seminar Ledger Entry"."Seminar No." <> OldSeminarNo then begin
             SalesLine.init();
