@@ -32,7 +32,7 @@ table 50105 "CSD Seminar Report Selections"
                 CalcFields("Report Name");
             end;
         }
-        field(4; "Report Name"; Text[255])
+        field(4; "Report Name"; Text[249])
         {
             CalcFormula = Lookup(AllObjWithCaption."Object Caption" where("Object Type" = const(Report),
                                                                            "Object ID" = Field("Report ID")));
