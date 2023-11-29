@@ -1,4 +1,4 @@
-{
+[{
   "usd": {
     "code": "USD",
     "alphaCode": "USD",
@@ -720,3 +720,4 @@
     "inverseRate": 0.0022014513387677
   }
 }
+]
