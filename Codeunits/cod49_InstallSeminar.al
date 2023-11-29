@@ -3,7 +3,19 @@ codeunit 50149 "CSD InstallSeminar"
     Subtype = Install;
 
     trigger OnInstallAppPerCompany();
+    var
+        Webservice: Record "Web Service Aggregate";
+        UpdradeTag: Codeunit "Upgrade Tag";
+        WebServiceMgt: Codeunit "Web Service Management";
+        WebServiceCreatedTxt: LAbel 'WebServiceCreatedTxt';
+        SettingsUpdatedForSeminarUsersTxt: Label 'SettingsUpdatedForSeminarUsersTxt';
+
+
     begin
+        if UpdradeTag.hasupgradetag(WebserviceCreatedTxt) then begin
+            WebServiceMgt.CreateTenantWebService(Webservice."Object Type"::Page, 50143, 'WSCustomers', true);
+            UpdradeTag.SetUpgradeTag(WebServiceCreatedTxt);
+        end;
         if SeminarSetup.Get() then
             exit;
         InitSetup();
@@ -26,7 +38,7 @@ codeunit 50149 "CSD InstallSeminar"
         NoSerie."Default Nos." := true;
         NoSerie."Manual Nos." := true;
 
-        if NoSerie.Insert()  then;
+        if NoSerie.Insert() then;
 
         NoSerieLine."Series Code" := NoSerie.Code;
         NoSerieLine."Starting No." := 'SEM0000';
@@ -37,28 +49,28 @@ codeunit 50149 "CSD InstallSeminar"
         NoSerie.Description := 'Seminar Registrations';
         NoSerie."Default Nos." := true;
         NoSerie."Manual Nos." := false;
-        if NoSerie.Insert()  then;
+        if NoSerie.Insert() then;
 
         NoSerieLine."Series Code" := NoSerie.Code;
         NoSerieLine."Starting No." := 'SEMREG0000';
-        if NoSerieLine.Insert()  then;
+        if NoSerieLine.Insert() then;
         SeminarSetup."Seminar Registration Nos." := NoSerie.code;
 
         NoSerie.Code := 'SEMREGPOST';
         NoSerie.Description := 'Posted Seminar Registrations';
         NoSerie."Default Nos." := true;
         NoSerie."Manual Nos." := true;
-        if NoSerie.Insert()  then;
+        if NoSerie.Insert() then;
 
         NoSerieLine."Series Code" := NoSerie.Code;
         NoSerieLine."Starting No." := 'SEMPREG0000';
-        if NoSerieLine.Insert()  then;
+        if NoSerieLine.Insert() then;
         SeminarSetup."Posted Seminar Reg. Nos." := NoSerie.code;
 
-        if SeminarSetup.Insert()  then;
+        if SeminarSetup.Insert() then;
 
         SourceCode.Code := 'SEMINAR';
-        if SourceCode.Insert()  then;
+        if SourceCode.Insert() then;
         SourceCodeSetup.Get();
         //SourceCodeSetup."CSD Seminar" := 'SEMINAR';
         SourceCodeSetup.Modify();
@@ -67,7 +79,7 @@ codeunit 50149 "CSD InstallSeminar"
     local procedure CreateSeminar();
     var
         Seminar: Record "CSD Seminar";
-        //Course: Record Course;
+    //Course: Record Course;
     begin
         // if Course.FindSet() then
         //     repeat
@@ -88,7 +100,7 @@ codeunit 50149 "CSD InstallSeminar"
     begin
         Resource.Init();
         Resource."No." := 'INSTR';
-        if Resource.Insert()  then;
+        if Resource.Insert() then;
         Resource.Name := 'Mr. Instructor';
         Resource.validate("Gen. Prod. Posting Group", 'MISC');
         Resource."Direct Unit Cost" := 100;
@@ -96,7 +108,7 @@ codeunit 50149 "CSD InstallSeminar"
         Resource.Type := Resource.Type::Person;
         if Resource.Modify() then;
         Resource."No." := 'ROOM 01';
-        if Resource.Insert()  then;
+        if Resource.Insert() then;
         Resource.Name := 'Room 01';
         Resource.Type := Resource.Type::Machine;
         if Resource.Modify() then;
