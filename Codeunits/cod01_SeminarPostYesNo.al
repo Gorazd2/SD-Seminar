@@ -1,9 +1,5 @@
 codeunit 50101 "CSD Seminar-Post (Yes/No)"
 {
-    // CSD1.00 - 2018-01-01 - D. E. Veloper
-    //   Chapter 7 - Lab 5-2
-    //     - Created new codeunit
-
     TableNo = 50110;
 
     trigger OnRun();

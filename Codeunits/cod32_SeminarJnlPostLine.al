@@ -1,6 +1,4 @@
 codeunit 50132 "CSD Seminar Jnl.-Post Line"
-// CSD1.00 - 2018-01-01 - D. E. Veloper
-// Chapter 7 - Lab 2-2
 {
     TableNo = "CSD Seminar Journal Line";
 

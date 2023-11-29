@@ -13,7 +13,7 @@ page 50142 "CSD Seminar Manager RoleCenter"
                 {
                     ApplicationArea = All;
                 }
-                part(MySeminars; "My Seminars")
+                part(MySeminars; "CSD My Seminars")
                 {
                     ApplicationArea = All;
                 }

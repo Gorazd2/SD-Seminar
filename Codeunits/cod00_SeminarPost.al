@@ -1,9 +1,5 @@
 codeunit 50100 "CSD Seminar-Post"
 {
-    // CSD1.00 - 2018-01-01 - D. E. Veloper
-    //   Chapter 7 - Lab 5-2
-    //     - Created new codeunit
-
     TableNo = "CSD Seminar Reg. Header";
 
     trigger OnRun();
